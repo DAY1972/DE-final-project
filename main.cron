@@ -1,0 +1,1 @@
+*/10 * * * * python3 /home/deaian/yunv/project/main.py >> /home/deaian/yunv/project/etl_log.log
