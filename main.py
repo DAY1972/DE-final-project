@@ -6,6 +6,11 @@ from datetime import datetime
 import py_scripts.logics # мой модуль для упраления процессом загрузки и обработки данных в БД edu
     
 def main_process(path = '/home/deaian/yunv/project'):  #'C:\Users\Admin\Desktop\project'
+    '''Проверка наличия свежих файлов в папке загрузки,
+       при наличии, производится подключение к БД edu и bank,
+       при успешном подключении, вызывается функция logic_0 из модуля logic,
+       которая управляет загрузкой данных и построением витрин
+    '''
     try:
         list_of_files = os.listdir(path)
     except Exception as error:
@@ -26,7 +31,7 @@ def main_process(path = '/home/deaian/yunv/project'):  #'C:\Users\Admin\Desktop\
                 conn_edu = psycopg2.connect(database = "edu",
                                             host = "de-edu-db.chronosavant.ru",
                                             user = "deaian",
-                                            password = 'sarumanthewhite',
+                                            password = '****',
                                             port = "5432")
                 conn_edu.autocommit = False
                 cursor_edu = conn_edu.cursor()
@@ -38,7 +43,7 @@ def main_process(path = '/home/deaian/yunv/project'):  #'C:\Users\Admin\Desktop\
                     conn_bank = psycopg2.connect(database = "bank",
                                                  host = "de-edu-db.chronosavant.ru",
                                                  user = "bank_etl",
-                                                 password = 'bank_etl_password',
+                                                 password = '****',
                                                  port = "5432")
                     conn_bank.autocommit = False
                     cursor_bank = conn_bank.cursor()
